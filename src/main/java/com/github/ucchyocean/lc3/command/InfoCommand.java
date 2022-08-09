@@ -19,6 +19,7 @@ public class InfoCommand extends LunaChatSubCommand {
 
     private static final String COMMAND_NAME = "info";
     private static final String PERMISSION_NODE = "lunachat." + COMMAND_NAME;
+    private static final String PERMISSION_NODE_ALL = "lunachat." + COMMAND_NAME + ".all";
 
     /**
      * コマンドを取得します。
@@ -99,6 +100,12 @@ public class InfoCommand extends LunaChatSubCommand {
         // BANされていないかどうか確認する
         if ( channel.getBanned().contains(sender) ) {
             sender.sendMessage(Messages.errmsgBanned());
+            return true;
+        }
+
+        // メンバーかどうか確認する
+        if ( !channel.getMembers().contains(sender) && !sender.hasPermission(PERMISSION_NODE_ALL) ) {
+            sender.sendMessage(Messages.errmsgNoJoin());
             return true;
         }
 
