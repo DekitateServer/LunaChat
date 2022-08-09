@@ -25,6 +25,7 @@ public class ListCommand extends LunaChatSubCommand {
 
     private static final String COMMAND_NAME = "list";
     private static final String PERMISSION_NODE = "lunachat." + COMMAND_NAME;
+    private static final String PERMISSION_NODE_ALL = "lunachat." + COMMAND_NAME + ".all";
 
     private static final int PAGE_SIZE = 8;
 
@@ -158,6 +159,11 @@ public class ListCommand extends LunaChatSubCommand {
 
             // BANされているチャンネルは表示しない
             if ( channel.getBanned().contains(player) ) {
+                continue;
+            }
+
+            // メンバーではないチャンネルは表示しない
+            if ( !channel.getMembers().contains(player) && !player.hasPermission(PERMISSION_NODE_ALL)) {
                 continue;
             }
 
