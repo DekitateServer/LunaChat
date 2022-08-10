@@ -104,7 +104,11 @@ public class InfoCommand extends LunaChatSubCommand {
         }
 
         // メンバーかどうか確認する
-        if ( !channel.getMembers().contains(sender) && !sender.hasPermission(PERMISSION_NODE_ALL) ) {
+        if (
+                !channel.isVisible()
+                        && !channel.getMembers().contains(sender)
+                        && !sender.hasPermission(PERMISSION_NODE_ALL)
+        ) {
             sender.sendMessage(Messages.errmsgNoJoin());
             return true;
         }
