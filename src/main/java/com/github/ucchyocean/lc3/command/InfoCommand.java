@@ -55,7 +55,7 @@ public class InfoCommand extends LunaChatSubCommand {
      * 使用方法に関するメッセージをsenderに送信します。
      * @param sender コマンド実行者
      * @param label 実行ラベル
-     * @see com.github.ucchyocean.lc3.command.LunaChatSubCommand#sendUsageMessage(ChannelMember, String) 
+     * @see com.github.ucchyocean.lc3.command.LunaChatSubCommand#sendUsageMessage()
      */
     @Override
     public void sendUsageMessage(
@@ -69,10 +69,11 @@ public class InfoCommand extends LunaChatSubCommand {
      * @param label 実行ラベル
      * @param args 実行時の引数
      * @return コマンドが実行されたかどうか
-     * @see com.github.ucchyocean.lc3.command.LunaChatSubCommand#runCommand(ChannelMember, String, String[])
+     * @see com.github.ucchyocean.lc3.command.LunaChatSubCommand#runCommand(java.lang.String[])
      */
     @Override
-    public boolean runCommand(ChannelMember sender, String label, String[] args) {
+    public boolean runCommand(
+            ChannelMember sender, String label, String[] args) {
 
         // 引数チェック
         // このコマンドは、デフォルトチャンネルでない人も実行できるが、その場合はチャンネル名を指定する必要がある
@@ -103,7 +104,11 @@ public class InfoCommand extends LunaChatSubCommand {
         }
 
         // メンバーかどうか確認する
-        if (!channel.isVisible() && !channel.getMembers().contains(sender) && !sender.hasPermission(PERMISSION_NODE_ALL)) {
+        if (
+                !channel.isVisible()
+                        && !channel.getMembers().contains(sender)
+                        && !sender.hasPermission(PERMISSION_NODE_ALL)
+        ) {
             sender.sendMessage(Messages.errmsgNoJoin());
             return true;
         }
