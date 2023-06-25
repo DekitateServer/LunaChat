@@ -112,6 +112,9 @@ permissions:
   lunachat.info:
     description: info command permission
     default: true
+  lunachat.info.all:
+    description: perfect info command permission
+    default: true
   lunachat.log:
     description: log command permission
     default: true
