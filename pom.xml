@@ -135,7 +135,7 @@
     <repository>
       <id>onarandombox-repo</id>
       <name>Multiverse repository</name>
-      <url>https://repo.onarandombox.com/content/repositories/multiverse/</url>
+      <url>https://repo.onarandombox.com/content/groups/public/</url>
     </repository>
     <repository>
       <id>codemc-repo</id>
@@ -173,6 +173,13 @@
       <version>1.18-R0.1-SNAPSHOT</version>
       <optional>true</optional>
       <scope>provided</scope>
+      <exclusions>
+        <!-- Unused by LunaChat and supplied by the proxy; the old snapshot is no longer published. -->
+        <exclusion>
+          <groupId>net.md-5</groupId>
+          <artifactId>brigadier</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>net.md-5</groupId>
